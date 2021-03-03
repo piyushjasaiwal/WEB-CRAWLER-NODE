@@ -7,7 +7,7 @@ const fs  = require('fs')
 const seenUrls = {};
 
 const getUrl = (link, host, protocol) =>{
-    if(link.include('http')){
+    if(link.includes('http')){
         return link;
     }else if (link.startsWith('/')){
         return `${protocol}//${host}${link}`;
@@ -29,26 +29,31 @@ const crawl = async({url, ignore}) => {
     const response = await fetch(url);
     const html = await response.text();
     const $ = cheerio.load(html);
+    if(response.statusCode == 404){ return ; }
     
-    const links = $("a").map((i,link) => link.attribs.src).get()
+    const links = $("a").map((i,link) => link.attribs.href).get()
 
-    const imgUrls = $("img").map = ((i,link) => link.attribs.src).get();
+    const imgUrls = $("img")
+    .map((i,link) => link.attribs.src).get();
 
     imgUrls.forEach((imageUrl) => {
         const URL = getUrl(imageUrl, host, protocol);
         const file_name = path.basename(URL);
-        download(URL, './images',file_name);
+        down.download(URL, './images',file_name);
     });
 
-    links.filter((link) => link.includes(host) && !link.includes(ignore)).foreach((link) => {
+    links
+    .filter((link) => link.includes(host) && !link.includes(ignore))
+    .forEach((link) => {
+        setTimeo
         crawl({
             url:getUrl(link, host, protocol),
-            ignore
+            ignore,
         });
     });
 };
 
 crawl({
-    url: "http://stevescooking.blogspot.com/",
+    url: "https://collegeinfogeek.com/",
     ignore : '/search'
 });

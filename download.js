@@ -1,5 +1,3 @@
-const request = require('request')
-const cheerio = require('cheerio')
 const axios = require('axios')
 const Fs = require('fs')
 const Path = require('path')
@@ -24,9 +22,9 @@ async function download(URL, folder, name) {
                 reject(err);
             })
         }).catch();
-    })
-
-    
+    })   
 }
+
+// download("https://unsplash.com/photos/d6Eyz_B1PtQ/download?force=true", './images', "waterfall.jpg");
 
 module.exports.download = download;
