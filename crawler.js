@@ -45,7 +45,6 @@ const crawl = async({url, ignore}) => {
     links
     .filter((link) => link.includes(host) && !link.includes(ignore))
     .forEach((link) => {
-        setTimeo
         crawl({
             url:getUrl(link, host, protocol),
             ignore,
