@@ -4,7 +4,17 @@ const urlParser = require('url')
 const fetch = require('node-fetch')
 const path = require('path')
 const fs  = require('fs')
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+//   });
+
+const prompt = require('prompt-sync')();
+ 
 const seenUrls = {};
+ 
+const crawling_link = prompt('Enter the URL you want to crawl for the images: ');
+
 
 const getUrl = (link, host, protocol) =>{
     if(link.includes('http')){
@@ -53,7 +63,8 @@ const crawl = async({url, ignore}) => {
 };
 
 crawl({
-    url: "https://collegeinfogeek.com/",
+    // url: "https://collegeinfogeek.com/",
+    url: crawling_link,
     // url:'https://www.instagram.com/official_hitomitanaka/',
     ignore : '/search'
 });
