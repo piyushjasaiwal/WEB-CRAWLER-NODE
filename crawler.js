@@ -54,5 +54,6 @@ const crawl = async({url, ignore}) => {
 
 crawl({
     url: "https://collegeinfogeek.com/",
+    // url:'https://www.instagram.com/official_hitomitanaka/',
     ignore : '/search'
 });
